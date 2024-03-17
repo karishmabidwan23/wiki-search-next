@@ -7,7 +7,6 @@ export const SearchItem = ({
   title,
   snippet,
   style,
-  pageid,
   onSelectPage,
 }: SearchItemProps) => {
   const sanitizedHtml = useMemo(

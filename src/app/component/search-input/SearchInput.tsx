@@ -1,4 +1,3 @@
-import { InputHTMLAttributes, useCallback } from "react";
 import {
   CrossIcon,
   Icon,
@@ -8,7 +7,6 @@ import {
 } from "./styled";
 import { crossIcon, searchIcon } from "@/app/icons";
 import { SearchInputProps } from "./types";
-import { RotatingLines } from "react-loader-spinner";
 
 export const SearchInput = (inputProps: SearchInputProps) => {
   const { isLoading, onClear, isError } = inputProps;

@@ -34,7 +34,6 @@ export const useHome = () => {
     [serchDetailQueryData]
   );
 
-  console.log("search history",searchHistory)
   const {
     data: searchData,
     isFetching: isSearchLoading,

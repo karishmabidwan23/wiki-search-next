@@ -9,6 +9,7 @@ export type ProjectTheme = {
     primary: string;
     secondary: string;
     tertiary: string;
+    buttonBackground: string;
   };
   spacing: {
     xxxs: number;
@@ -48,6 +49,8 @@ export type ProjectTheme = {
     maxwidth: number;
     maxHeight: number;
     inputWidth: number;
+    contentWrapper: number;
+    ListHeight: number;
   };
   weight: {
     normal: number;

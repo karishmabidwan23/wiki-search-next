@@ -1,5 +1,10 @@
 import { SearchInput } from "@/app/component";
-import { HomeContainer, SearchList } from "./styled";
+import {
+  HomeContainer,
+  RecentList,
+  RecentSearchWrapper,
+  SearchList,
+} from "./styled";
 import { useHome } from "./useHome";
 import { SearchItem } from "@/app/component";
 import { useCallback, useRef } from "react";
@@ -46,14 +51,13 @@ export const Home = () => {
         value={searchTerm}
         isError={isSearchError}
       />
-      {searchHistory?.length && (
-        <div>
-          Recent Searches
+      {searchHistory?.length ? (
+        <RecentSearchWrapper>
           {searchHistory?.map((rs) => (
-            <div key={rs+""}>{`${rs}`}</div>
+            <RecentList key={rs + ""}>{`${rs}`}</RecentList>
           ))}
-        </div>
-      )}
+        </RecentSearchWrapper>
+      ) : null}
       {showSearchResult && searchData?.length ? (
         <SearchList
           ref={searchListRef}

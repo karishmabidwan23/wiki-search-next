@@ -11,6 +11,7 @@ export const BaseTheme: ProjectTheme = {
     primary: "#F5F5F5",
     secondary: "#F6F6F6",
     tertiary: "#F5FBFF",
+    buttonBackground: "#E8F2F5",
   },
   spacing: {
     xxxs: 1,
@@ -50,6 +51,7 @@ export const BaseTheme: ProjectTheme = {
     maxwidth: 200,
     maxHeight: 200,
     inputWidth: 450,
+    contentWrapper: 480,
   },
   weight: {
     normal: 400,
