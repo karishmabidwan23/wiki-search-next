@@ -1,9 +1,10 @@
 import { useDebounce } from "@/app/hooks";
-import { FormEvent, useCallback, useMemo, useState } from "react";
+import { FormEvent, useCallback, useMemo, useRef, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { SearchDetailResponse, SearchResponse } from "./types";
 import { sanitize } from "dompurify";
 import axios from "axios";
+import { useTheme } from "styled-components";
 
 const fetchSearchData = async (searchTerm: string): Promise<SearchResponse> => {
   const response = await axios.get(`/api/search?value=${searchTerm}`);
@@ -24,12 +25,14 @@ export const useHome = () => {
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
   const queryClient = useQueryClient();
   const serchDetailQueryData = queryClient.getQueriesData("search-detail");
+  const searchListRef = useRef(null);
+  const theme = useTheme();
 
   const searchHistory = useMemo(
     () =>
       queryClient
         .getQueriesData("search-detail")
-        .map((it) => it[0][1])
+        .map((it) => `${it[0][1]}`)
         .filter((it) => !!it),
     [serchDetailQueryData]
   );
@@ -97,6 +100,8 @@ export const useHome = () => {
     isErrorDetail,
     showSearchResult,
     isSearchError,
-    searchHistory
+    searchHistory,
+    searchListRef,
+    theme
   };
 };

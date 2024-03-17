@@ -1,13 +1,18 @@
 "use client";
 
 import { ThemeProvider } from "styled-components";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClientProvider } from "react-query";
 import { Home } from "../app/screens/home";
 import { BaseTheme } from "../app/lib/styled-components/themes/BaseTheme";
+import { useCustomQueryClient } from "@/app/lib";
 
-const queryClient = new QueryClient();
 
-export default function () {
+export default function HomePage() {
+  const { queryClient, isClientLoaded } = useCustomQueryClient()
+
+  if (!isClientLoaded)
+    return <div>Error loading query client for react hooks.</div>
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={BaseTheme}>

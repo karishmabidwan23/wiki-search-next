@@ -9,11 +9,11 @@ import { crossIcon, searchIcon } from "@/app/icons";
 import { SearchInputProps } from "./types";
 
 export const SearchInput = (inputProps: SearchInputProps) => {
-  const { isLoading, onClear, isError } = inputProps;
+  const { isLoading, onClear, isError, ...rest } = inputProps;
   return (
     <InputWrapper isError={isError}>
       <Icon src={searchIcon} alt="search-icon" />
-      <SearchInputStyled {...inputProps} />
+      <SearchInputStyled {...rest} />
       <LoadingStyled
         visible={isLoading}
         strokeWidth="5"

@@ -11,7 +11,6 @@ import { useHome } from "./useHome";
 import { SearchItem } from "@/app/component";
 import { useCallback, useRef } from "react";
 import { ThreeCircles } from "react-loader-spinner";
-import { useTheme } from "styled-components";
 
 export const Home = () => {
   const {
@@ -27,10 +26,11 @@ export const Home = () => {
     isSearchError,
     showSearchResult,
     searchHistory,
+    searchListRef,
+    theme
   } = useHome();
 
-  const searchListRef = useRef(null);
-  const theme = useTheme();
+
 
   const renderSearchItem = useCallback(
     ({ index, style }: { index: number; style: any }) =>
@@ -72,8 +72,8 @@ export const Home = () => {
       </SearchWrapper>
       {searchHistory?.length ? (
         <RecentSearchWrapper>
-          {searchHistory?.map((rs) => (
-            <RecentList key={rs + ""}>{`${rs}`}</RecentList>
+          {searchHistory?.map((rs: string) => (
+            <RecentList key={rs} onClick={() => onSelectPage(rs)}>{rs}</RecentList>
           ))}
         </RecentSearchWrapper>
       ) : null}
