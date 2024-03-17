@@ -50,7 +50,7 @@ export type ProjectTheme = {
     maxHeight: number;
     inputWidth: number;
     contentWrapper: number;
-    ListHeight: number;
+    listHeight: number;
   };
   weight: {
     normal: number;

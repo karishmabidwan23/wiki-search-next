@@ -9,13 +9,24 @@ export const HomeContainer = styled.div`
   padding: ${({ theme }) => theme.spacing.xl}px;
 `;
 
-export const SearchList = styled(FixedSizeList).attrs(({ theme }) => ({
-  width: theme.size.contentWrapper,
-  height: theme.size.ListHeight,
-}))`
+export const SearchWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SearchListWrapper = styled.div`
+position: absolute;
+background-color: white;
+top: 48px;
+z-index: 999;
+`;
+
+export const SearchList = styled(FixedSizeList)`
   margin-top: 0;
   border-radius: ${({ theme }) => theme.spacing.sm}px;
   box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.1);
+
 `;
 
 export const RecentSearchWrapper = styled.div`

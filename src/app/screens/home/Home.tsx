@@ -4,11 +4,14 @@ import {
   RecentList,
   RecentSearchWrapper,
   SearchList,
+  SearchListWrapper,
+  SearchWrapper,
 } from "./styled";
 import { useHome } from "./useHome";
 import { SearchItem } from "@/app/component";
 import { useCallback, useRef } from "react";
 import { ThreeCircles } from "react-loader-spinner";
+import { useTheme } from "styled-components";
 
 export const Home = () => {
   const {
@@ -27,6 +30,7 @@ export const Home = () => {
   } = useHome();
 
   const searchListRef = useRef(null);
+  const theme = useTheme();
 
   const renderSearchItem = useCallback(
     ({ index, style }: { index: number; style: any }) =>
@@ -43,14 +47,29 @@ export const Home = () => {
 
   return (
     <HomeContainer>
-      <SearchInput
-        placeholder="Type to search here..."
-        onInput={handleSubmit}
-        isLoading={isSearchLoading}
-        onClear={handleClear}
-        value={searchTerm}
-        isError={isSearchError}
-      />
+      <SearchWrapper>
+        <SearchInput
+          placeholder="Type to search here..."
+          onInput={handleSubmit}
+          isLoading={isSearchLoading}
+          onClear={handleClear}
+          value={searchTerm}
+          isError={isSearchError}
+        />
+        {showSearchResult && searchData?.length ? (
+          <SearchListWrapper>
+            <SearchList
+              width={theme.size.contentWrapper}
+              height={theme.size.listHeight}
+              ref={searchListRef}
+              itemCount={searchData?.length || 0}
+              itemSize={120}
+            >
+              {renderSearchItem}
+            </SearchList>
+          </SearchListWrapper>
+        ) : null}
+      </SearchWrapper>
       {searchHistory?.length ? (
         <RecentSearchWrapper>
           {searchHistory?.map((rs) => (
@@ -58,15 +77,7 @@ export const Home = () => {
           ))}
         </RecentSearchWrapper>
       ) : null}
-      {showSearchResult && searchData?.length ? (
-        <SearchList
-          ref={searchListRef}
-          itemCount={searchData?.length || 0}
-          itemSize={120}
-        >
-          {renderSearchItem}
-        </SearchList>
-      ) : null}
+
       {isSearchDetailFetching && (
         <ThreeCircles
           visible={true}

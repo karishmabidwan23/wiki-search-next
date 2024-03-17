@@ -52,6 +52,7 @@ export const BaseTheme: ProjectTheme = {
     maxHeight: 200,
     inputWidth: 450,
     contentWrapper: 480,
+    listHeight: 600
   },
   weight: {
     normal: 400,
