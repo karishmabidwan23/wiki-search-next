@@ -37,6 +37,7 @@ export const Home = () => {
       searchData?.length &&
       searchData?.length > index && (
         <SearchItem
+          key={searchData[index].pageid}
           {...searchData[index]}
           style={style}
           onSelectPage={onSelectPage}
